@@ -17,23 +17,23 @@ export default function App() {
     if (result !== null) {
       clearInputs();
     }
-    // Clear inputs if input is AC
     switch (input) {
+      // Clear inputs if input is AC
       case "AC":
         clearInputs();
         return;
+        // Make calculations on equal sign
       case "=":
         calcHandler();
         return;
-      case "()":
         // Parenthesis
+      case "()":
         return;
-      case "%":
         // Percent
+      case "%":
         return;
 
       default:
-        // Add input to array
         break;
     }
 
@@ -48,8 +48,6 @@ export default function App() {
   const calcHandler = () => {
     const results = calcInputs.join("");
     setResult(eval(results));
-
-    return;
   };
 
   return (
