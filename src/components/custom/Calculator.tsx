@@ -1,66 +1,64 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-
 const Calculator = () => {
+  const [calcInputs, setCalcInputs] = useState<string[]>([]);
+  const [result, setResult] = useState<number | null>(null);
 
-    const [calcInputs, setCalcInputs] = useState<string[]>([]);
-    const [result, setResult] = useState<number | null>(null);
-  
-    const inputHandler = (input: string) => {
-      if (result !== null) {
+  const inputHandler = (input: string) => {
+    if (result !== null) {
+      clearInputs();
+    }
+
+    switch (input) {
+      // Clear inputs if input is AC
+      case "AC":
         clearInputs();
-      }
-      switch (input) {
-        // Clear inputs if input is AC
-        case "AC":
-          clearInputs();
-          return;
-        // Remove the lasr input if input is C
-        case "C":
-          setCalcInputs((prevInputs) => prevInputs.slice(0, -1));
-          return;
-          // Make calculations on equal sign
-        case "=":
-          calcHandler();
-          return;
-          // Percent
-        case "%":
-          return;
-  
-        default:
-          break;
-      }
-  
-      setCalcInputs((prevInputs) => [...prevInputs, input]);
-    };
-  
-    const clearInputs = () => {
-      setCalcInputs([]);
-      setResult(null);
-    };
-  
-  
-    const calcHandler = (): void => {
-      try {
-        const results: string = calcInputs.join("");
-        // Convert eval result to number for type safety
-        const evaluatedResult: number = Number(eval(results));
-        
-        // Validate the result is a valid, finite number
-        if (!isNaN(evaluatedResult) && isFinite(evaluatedResult)) {
-          setResult(evaluatedResult);
-        } else {
-          setResult(null);
-        }
-      } catch (error) {
-        console.error("Error in Calculating the results: ", error);
+        return;
+
+      // Remove the last input if input is C
+      case "C":
+        setCalcInputs((prevInputs) => prevInputs.slice(0, -1));
+        return;
+
+      // Make calculations on equal sign
+      case "=":
+        calcHandler();
+        return;
+
+      default:
+        break;
+    }
+
+    setCalcInputs((prevInputs) => [...prevInputs, input]);
+  };
+
+  const clearInputs = () => {
+    setCalcInputs([]);
+    setResult(null);
+  };
+
+  const calcHandler = (): void => {
+    try {
+      // Replace "π" with Math.PI for calculation
+      const results: string = calcInputs.join("").replace(/π/g, `${Math.PI}`);
+      
+      // Convert eval result to number for type safety
+      const evaluatedResult: number = Number(eval(results));
+
+      // Validate the result is a valid, finite number
+      if (!isNaN(evaluatedResult) && isFinite(evaluatedResult)) {
+        // Round the result to 3 decimal places
+        const roundedResult: number = Math.round(evaluatedResult * 1000) / 1000;
+        setResult(roundedResult);
+      } else {
         setResult(null);
       }
-    };
-  
-
-
+    } catch (error) {
+      console.error("Error in Calculating the results: ", error);
+      setResult(null);
+    }
+  };
 
   return (
     <>
@@ -85,8 +83,8 @@ const Calculator = () => {
             {/* Row */}
             <Button onClick={() => inputHandler("AC")}>AC</Button>
             <Button onClick={() => inputHandler("C")}>C</Button>
-            <Button>%</Button>
-            <Button>/</Button>
+            <Button onClick={() => inputHandler("π")}>π</Button>
+            <Button onClick={() => inputHandler("/")}>/</Button>
 
             {/* Row */}
             <Button onClick={() => inputHandler("7")}>7</Button>
@@ -117,7 +115,7 @@ const Calculator = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Calculator
+export default Calculator;
