@@ -42,7 +42,7 @@ const Calculator = () => {
     try {
       // Replace "π" with Math.PI for calculation
       const results: string = calcInputs.join("").replace(/π/g, `${Math.PI}`);
-      
+
       // Convert eval result to number for type safety
       const evaluatedResult: number = Number(eval(results));
 
@@ -62,53 +62,93 @@ const Calculator = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
-        <div className="flex flex-col gap-4 p-4 border border-black rounded-lg">
+      <div className="flex flex-col items-center justify-center h-screen bg-displayArea">
+        <div className="shadow-[-4px_-4px_0px_rgba(0,0,0,1),12px_12px_0px_rgba(0,0,0,1)]  bg-keyboardArea rounded-2xl ">
           {/* Display Container */}
-          <div className="w-full p-6 border border-black rounded-lg">
+          <div className="w-full p-6 text-black rounded-2xl bg-displayArea">
             <div>
               {/* Display Input */}
-              <div className="text-2xl font-bold min-h-9">
+              <div className="text-4xl font-bold min-h-12">
                 {calcInputs.length > 0 ? calcInputs.join("") : ""}
               </div>
               {/* Display Result */}
-              <div className="text-3xl font-bold text-right min-h-10">
+              <div className="text-6xl font-bold text-right min-h-16">
                 {result !== null && result}
               </div>
             </div>
           </div>
 
           {/* Keyboard Container */}
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4 p-4 bg-keyboardArea rounded-2xl">
             {/* Row */}
-            <Button onClick={() => inputHandler("AC")}>AC</Button>
-            <Button onClick={() => inputHandler("C")}>C</Button>
-            <Button onClick={() => inputHandler("π")}>π</Button>
-            <Button onClick={() => inputHandler("/")}>/</Button>
+            <Button onClick={() => inputHandler("AC")} variant="special" className="">
+              AC
+            </Button>
+            <Button onClick={() => inputHandler("C")} variant="normal">
+              C
+            </Button>
+            <Button onClick={() => inputHandler("π")} variant="normal">
+              π
+            </Button>
+            <Button onClick={() => inputHandler("/")} variant="normal">
+              /
+            </Button>
 
             {/* Row */}
-            <Button onClick={() => inputHandler("7")}>7</Button>
-            <Button onClick={() => inputHandler("8")}>8</Button>
-            <Button onClick={() => inputHandler("9")}>9</Button>
-            <Button onClick={() => inputHandler("*")}>x</Button>
+            <Button onClick={() => inputHandler("7")} variant="normal">
+              7
+            </Button>
+            <Button onClick={() => inputHandler("8")} variant="normal">
+              8
+            </Button>
+            <Button onClick={() => inputHandler("9")} variant="normal">
+              9
+            </Button>
+            <Button onClick={() => inputHandler("*")} variant="normal">
+              x
+            </Button>
 
             {/* Row */}
-            <Button onClick={() => inputHandler("4")}>4</Button>
-            <Button onClick={() => inputHandler("5")}>5</Button>
-            <Button onClick={() => inputHandler("6")}>6</Button>
-            <Button onClick={() => inputHandler("-")}>-</Button>
+            <Button onClick={() => inputHandler("4")} variant="normal">
+              4
+            </Button>
+            <Button onClick={() => inputHandler("5")} variant="normal">
+              5
+            </Button>
+            <Button onClick={() => inputHandler("6")} variant="normal">
+              6
+            </Button>
+            <Button onClick={() => inputHandler("-")} variant="normal">
+              -
+            </Button>
 
             {/* Row */}
-            <Button onClick={() => inputHandler("1")}>1</Button>
-            <Button onClick={() => inputHandler("2")}>2</Button>
-            <Button onClick={() => inputHandler("3")}>3</Button>
-            <Button onClick={() => inputHandler("+")}>+</Button>
+            <Button onClick={() => inputHandler("1")} variant="normal">
+              1
+            </Button>
+            <Button onClick={() => inputHandler("2")} variant="normal">
+              2
+            </Button>
+            <Button onClick={() => inputHandler("3")} variant="normal">
+              3
+            </Button>
+            <Button onClick={() => inputHandler("+")} variant="normal">
+              +
+            </Button>
 
             {/* Row */}
-            <Button onClick={() => inputHandler("0")}>0</Button>
-            <Button onClick={() => inputHandler(".")}>.</Button>
+            <Button onClick={() => inputHandler("0")} variant="normal">
+              0
+            </Button>
+            <Button onClick={() => inputHandler(".")} variant="normal">
+              .
+            </Button>
             {/* Larger Button */}
-            <Button className="col-span-2" onClick={() => inputHandler("=")}>
+            <Button
+              className="col-span-2"
+              onClick={() => inputHandler("=")}
+              variant="special"
+            >
               =
             </Button>
           </div>

@@ -52,7 +52,13 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			displayArea: 'hsl(var(--calc-display-area))',
+			keyboardArea: 'hsl(var(--calc-keyboard-area))',
+			normalKeys: 'hsl(var(--calc-normal-keys))',
+			specialKeys: 'hsl(var(--calc-special-keys))',
+			calcCursor: 'hsl(var(--calc-cursor))',
+			calcShadow: 'hsl(var(--calc-shadow))'
   		}
   	}
   },

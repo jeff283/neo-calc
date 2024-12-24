@@ -1,6 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  /* font-family: 'Urbanist', sans-serif; */
+  font-family: "Familjen Grotesk", sans-serif;
+}
+
 
 @layer base {
 
@@ -29,7 +39,14 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
+
+    --calc-display-area: 64, 100%, 97%;
+    --calc-keyboard-area: 190, 58%, 77%;
+    --calc-normal-keys: 338, 100%, 84%;
+    --calc-special-keys: 64, 100%, 97%;
+    --calc-cursor: 338, 100%, 84%;
+    --calc-shadow: 0 0% 0%;
   }
 
   .dark {
