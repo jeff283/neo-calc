@@ -2,16 +2,10 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 export default function App() {
-  // Calc Steps
-  // 1. Get input and prep it for calculation
-  // 2. Display the calc inputs on screen
-  // 3. Calculate when the "=" button is pressed
-  // 4. Display the result on screen
-  // 5. Clear the calc inputs
+
 
   const [calcInputs, setCalcInputs] = useState<string[]>([]);
   const [result, setResult] = useState<number | null>(null);
-  // const operators = ["+", "-", "*", "/"];
 
   const inputHandler = (input: string) => {
     if (result !== null) {
@@ -22,12 +16,13 @@ export default function App() {
       case "AC":
         clearInputs();
         return;
+      // Remove the lasr input if input is C
+      case "C":
+        setCalcInputs((prevInputs) => prevInputs.slice(0, -1));
+        return;
         // Make calculations on equal sign
       case "=":
         calcHandler();
-        return;
-        // Parenthesis
-      case "()":
         return;
         // Percent
       case "%":
@@ -45,10 +40,26 @@ export default function App() {
     setResult(null);
   };
 
-  const calcHandler = () => {
-    const results = calcInputs.join("");
-    setResult(eval(results));
+
+  const calcHandler = (): void => {
+    try {
+      const results: string = calcInputs.join("");
+      // Convert eval result to number for type safety
+      const evaluatedResult: number = Number(eval(results));
+      
+      // Validate the result is a valid, finite number
+      if (!isNaN(evaluatedResult) && isFinite(evaluatedResult)) {
+        setResult(evaluatedResult);
+      } else {
+        setResult(null);
+      }
+    } catch (error) {
+      console.error("Error in Calculating the results: ", error);
+      setResult(null);
+    }
   };
+
+  
 
   return (
     <>
@@ -72,7 +83,7 @@ export default function App() {
           <div className="grid grid-cols-4 gap-4">
             {/* Row */}
             <Button onClick={() => inputHandler("AC")}>AC</Button>
-            <Button>()</Button>
+            <Button onClick={() => inputHandler("C")}>C</Button>
             <Button>%</Button>
             <Button>/</Button>
 
