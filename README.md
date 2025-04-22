@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+# Neo Brutalist Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple calculator application built with React, TypeScript, and Vite that embraces the neobrutalist design aesthetic. This project features a calculator with basic arithmetic operations and a minimalist interface with bold shadows and distinct styling.
 
-Currently, two official plugins are available:
+![Calculator Screenshot](public/og_image.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Basic arithmetic operations (+, -, *, /)
+- Support for decimal numbers
+- Pi (π) constant support
+- Clear entry (C) and all-clear (AC) functions
+- Neobrutalist design with bold shadows and contrasting colors
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Live Demo
 
-- Configure the top-level `parserOptions` property like this:
+Check out the live application: [https://neo-brutalist-calculator.vercel.app/](https://neo-brutalist-calculator.vercel.app/)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Technologies Used
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+
+## Development
+
+This project was created using Vite. To run it locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## GitHub Repository
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+[https://github.com/jeff283/neo-calc](https://github.com/jeff283/neo-calc)
